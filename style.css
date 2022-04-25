@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Akshar:wght@500;700&display=swap');
+body {
+    height: 95vh;
+    font-family: 'Akshar', sans-serif;
+}
+
+.content {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    display: inline;
+    font-size: 10vw;
+}
+
+form {
+    display: inline;
+}
+
+#FormOutput {
+    background-color: transparent;
+    border: 0.8vw solid black;
+    border-radius: 10px;
+    width: 15vw;
+    height: 9vw;
+    font-size: 10vw;
+    font-family: 'Akshar', sans-serif;
+    margin-left: 3vw;
+}
+
+#FormOutput:focus {
+    outline: none;
+    overflow: hidden;
+}
+
+#FormOutput::-webkit-inner-spin-button,
+#FormOutput::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.screen {
+    position: fixed;
+    width: 100vw;
+    text-align: center;
+    font-size: 2vw;
+}
+
+#timeScreen {
+    left: 5vw;
+}
+
+#scoreScreen {
+    right: 5vw;
+}
+
+@media (max-width: 800px) {
+    h1 {
+        font-size: 20vw;
+    }
+    .screen {
+        font-size: 6vw;
+    }
+    #timeScreen {
+        left: 15vw;
+    }
+    #scoreScreen {
+        right: 15vw;
+    }
+    #FormOutput {
+        border: 2vw solid black;
+        border-radius: 20px;
+        width: 30vw;
+        height: 18vw;
+        font-size: 20vw;
+        margin-left: 5vw;
+    }
+}
+
+@media (min-width: 800px) {
+    /*pełen ekran */
+    footer {
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        width: 100%;
+        height: 2em;
+        overflow: hidden;
+        margin: 0 auto;
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+        transition: all 1s ease;
+        z-index: 999;
+    }
+    footer:hover {
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+        transition: all 1s ease;
+        height: 10em;
+    }
+    footer .container {
+        margin-top: 5px;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        top: 0;
+        left: 0;
+        background: #04090edb;
+        border-top: solid #ffffff 2px;
+    }
+    footer .cont {
+        position: relative;
+        top: -45px;
+        right: 190px;
+        width: 150px;
+        height: auto;
+        margin: 0 auto;
+    }
+    .footer_center {
+        width: 500px;
+        float: left;
+        text-align: center;
+    }
+    footer h3 {
+        color: white;
+        line-height: 43px;
+        font-size: 30px;
+        text-align: center;
+        margin-top: 100px;
+    }
+}
+
+@media (max-width: 800px) {
+    /*pełen ekran */
+    footer {
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        width: 100%;
+        height: 2em;
+        overflow: hidden;
+        margin: 0 auto;
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+        transition: all 1s ease;
+        z-index: 999;
+    }
+    footer:active {
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+        transition: all 1s ease;
+        height: 10em;
+    }
+    footer .container {
+        margin-top: 5px;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        top: 0;
+        left: 0;
+        background: #04090edb;
+        border-top: solid #ffffff 2px;
+    }
+    footer .cont {
+        position: relative;
+        top: -45px;
+        right: 190px;
+        width: 150px;
+        height: auto;
+        margin: 0 auto;
+    }
+    .footer_center {
+        width: 500px;
+        float: left;
+        text-align: center;
+    }
+    footer h3 {
+        color: white;
+        line-height: 60px;
+        font-size: 6vw;
+        margin-left: 20px;
+        text-align: center;
+        margin-top: 90px;
+    }
+}
