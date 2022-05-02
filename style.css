@@ -1,11 +1,127 @@
 @import url('https://fonts.googleapis.com/css2?family=Akshar:wght@500;700&display=swap');
 body {
-    height: 95vh;
+    margin: 0;
+    overflow-x: hidden;
     font-family: 'Akshar', sans-serif;
 }
 
+section {
+    position: relative;
+}
+
+.main_section {
+    height: 95vh;
+}
+
+.code_section {
+    padding-bottom: 200px;
+    padding-top: 10vw;
+}
+
+.more_section {
+    padding-top: 10vw;
+}
+
+h2 {
+    padding: 0;
+    text-align: center;
+    font-size: 8vw;
+}
+
+.code_container {
+    overflow: scroll;
+    background-color: rgb(70, 70, 70);
+    border-radius: 30px;
+    display: block;
+    max-width: 80vw;
+    margin: 75px auto 0 auto;
+}
+
+pre {
+    margin-left: 3vw;
+    font-size: 15px;
+}
+
+.code:nth-of-type(1) {
+    color: yellow;
+}
+
+.code:nth-of-type(2) {
+    color: cyan;
+}
+
+.code:nth-of-type(3) {
+    color: slateblue;
+}
+
+.code:nth-of-type(4) {
+    color: orange;
+}
+
+.comment {
+    color: red;
+}
+
+:link {
+    color: #5966f4;
+}
+
+:visited {
+    color: #5966f4;
+}
+
+.card {
+    height: 365px;
+    width: 335px;
+    padding: 20px 35px;
+    background-color: #04090edb;
+    border: solid #ffffff 2px;
+    border-radius: 20px;
+    margin: 15px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.card:hover {
+    transform: scale(1.1);
+    transition: 0.4s;
+}
+
+.card_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    padding-bottom: 175px;
+}
+
+.card h5 {
+    font-size: 23px;
+    display: inline;
+    color: #5966f4;
+    background-clip: text;
+}
+
+.card p {
+    color: white;
+    font-size: 16px;
+    line-height: 27px;
+    margin-bottom: 25px;
+}
+
+@media (max-width: 800px) {
+    .card_box {
+        flex-wrap: wrap;
+    }
+    .card:hover {
+        transform: scale(1);
+        transition: 0.4s;
+    }
+}
+
 .content {
-    height: 100%;
+    height: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,32 +159,16 @@ form {
 }
 
 .screen {
-    position: fixed;
-    width: 100vw;
     text-align: center;
     font-size: 2vw;
 }
 
-#timeScreen {
-    left: 5vw;
-}
-
-#scoreScreen {
-    right: 5vw;
-}
-
 @media (max-width: 800px) {
     h1 {
-        font-size: 20vw;
+        font-size: 15vw;
     }
     .screen {
         font-size: 6vw;
-    }
-    #timeScreen {
-        left: 15vw;
-    }
-    #scoreScreen {
-        right: 15vw;
     }
     #FormOutput {
         border: 2vw solid black;
@@ -81,7 +181,6 @@ form {
 }
 
 @media (min-width: 800px) {
-    /*pełen ekran */
     footer {
         bottom: 0;
         left: 0;
@@ -138,7 +237,6 @@ form {
 }
 
 @media (max-width: 800px) {
-    /*pełen ekran */
     footer {
         bottom: 0;
         left: 0;
@@ -193,4 +291,21 @@ form {
         text-align: center;
         margin-top: 90px;
     }
+}
+
+.custom-shape-divider-bottom-1651260755 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1651260755 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 66px;
 }

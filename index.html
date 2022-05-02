@@ -6,29 +6,181 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cos.css">
 </head>
 
 <body>
-    <div id="scoreScreen" class="screen"></div>
-    <div id="timeScreen" class="screen"></div>
-    <div class="content">
-        <h1 id="operation"></h1>
-        <form onsubmit="checkOutput()">
-            <input type="number" id="FormOutput">
-        </form>
-    </div>
+    <section class="main_section">
+        <div id="scoreScreen" class="screen"></div>
+        <!-- <div id="timeScreen" class="screen"></div> -->
+        <div class="content">
+            <h1 id="operation"></h1>
+            <form onsubmit="checkOutput()">
+                <input type="text" autocomplete="off" pattern="[0-9|-]{0,3}" id="FormOutput">
+            </form>
+        </div>
+        <div class="custom-shape-divider-bottom-1651260755">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+    <section class="code_section">
+        <h2>kod źródłowy:</h2>
+        <div class="code_container">
+            <pre class="code">
+                <p class="comment">//ta część kodu źródłowego strony odpowiada za obsługę <a href="https://pl.wikipedia.org/wiki/HTTP_cookie" target="_blank">ciasteczek</a></p>
+                
+            function setCookie(cname, cvalue, exdays) {
+                const d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                let expires = "expires=" + d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+                
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+            
+            function checkCookie() {
+                let cookie = getCookie("score");
+                if (cookie == "" || cookie < 0) {
+                    setCookie("score", 0, 365)
+                }
+            }
+        </pre>
+            <pre class="code">
+            <p class="comment">//te funkcję odpowiadają za generowanie liczb <a href="https://pl.wikipedia.org/wiki/Generator_liczb_pseudolosowych" target="_blank">pseudolosowych</a> oraz sprawdzanie poprawności wpisywanych wartości</p>
+            function getRandomNumber(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+            
+            function checkOutput() {
+                if (FormOutput.value == outputResult) {
+                    setCookie("score", ++cookie, 365)
+                } else {
+                    setCookie("score", --cookie, 365)
+                }
+            }
+        </pre>
+            <pre class="code">
+            <p class="comment">//ten fragment kodu tworzy wielokolorowe tło strony</p>
+            let colors = ["#54d3de", "#C6FF67", "#FF876B", "#A486FF", "#cf4684", "#E4AEC5", "#2ac783"]
+            let elements = document.querySelectorAll("section")
+            let shape = document.querySelectorAll("path")
+            let color1 = colors[getRandomNumber(0, 6)]
+            let color2 = colors[getRandomNumber(0, 6)]
+            let color3 = colors[getRandomNumber(0, 6)]
+            while (color2 == color1 || color2 == color3) {
+                color2 = colors[getRandomNumber(0, 6)]
+            }
+            while (color3 == color1 || color3 == color2) {
+                color3 = colors[getRandomNumber(0, 6)]
+            }
+
+            elements[0].style.backgroundColor = color1
+            shape[0].style.fill = color2
+            elements[1].style.backgroundColor = color2
+            shape[1].style.fill = color3
+            elements[2].style.backgroundColor = color3
+        </pre>
+            <pre class="code">
+            <p class="comment">//poniższy szereg funkcji i instrukcji warunkowych generuje i działania matematyczne oraz wyświetla wszystko na ekranie</p>
+            
+            checkCookie()
+            let cookie = getCookie("score")
+            const operation = document.getElementById("operation")
+            const FormOutput = document.getElementById("FormOutput")
+            FormOutput.value = ""
+            FormOutput.focus()
+            const scoreScreen = document.getElementById("scoreScreen")
+            
+            let arr = ["/", "*", "-", "+"]
+            let firstNumber = getRandomNumber(1, 10)
+            let secondNumber = getRandomNumber(1, 10)
+            let character = arr[getRandomNumber(0, 3)]
+            
+            switch (character) {
+                case ("/"):
+                while (firstNumber % secondNumber != 0) {
+                    firstNumber = getRandomNumber(1, 10)
+                    secondNumber = getRandomNumber(1, 10)
+                }
+                outputResult = firstNumber / secondNumber
+                break;
+                
+                case ("*"):
+                outputResult = firstNumber * secondNumber
+                break;
+                
+                case ("-"):
+                outputResult = firstNumber - secondNumber
+                break;
+                
+                case ("+"):
+                outputResult = firstNumber + secondNumber
+                break;
+            }
+            
+            let outputOperation = firstNumber + " " + character + " " + secondNumber
+            operation.innerHTML = outputOperation + " ="
+            console.log(outputOperation + " = " + outputResult)
+            scoreScreen.innerHTML = "wynik: " + cookie
+        </pre>
+        </div>
+        <div class="custom-shape-divider-bottom-1651260755">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill_v2"></path>
+        </svg>
+        </div>
+    </section>
+    <section class="more_section">
+        <h2>więcej:</h2>
+        <div class="card_box">
+            <div class="card">
+                <h5>GitHub</h5>
+                <p>GitHub – hostingowy serwis internetowy przeznaczony do projektów programistycznych wykorzystujących system kontroli wersji Git. Jeśli chcesz zobaczyć moje projekty na GitHubie kliknij <a href="https://github.com/Patrick3969" target="_blank">tutaj</a></p>
+            </div>
+
+
+            <div class="card">
+                <h5>Discord</h5>
+                <p>Discord to bezpłatna aplikacja służąca do rozmów głosowych i komunikacji za pomocą wiadomości tekstowych. jeśli chcesz skątaktować się ze mną, dodaj mnie jako znajomego -> <strong>Patrick123#2611</strong></p>
+            </div>
+
+
+            <div class="card">
+                <h5>Steam</h5>
+                <p>Steam to platforma dystrybucji cyfrowej gier komputerowych, system gry wieloosobowej oraz serwis społecznościowy stworzony przez Valve Corporation. jeśli chcesz ograć ze mną w cs`a zobacz <a href="https://steamcommunity.com/id/fffffffaaaaaaa/"
+                        target="_blank">mój profil steam</a> </p>
+            </div>
+        </div>
+    </section>
     <footer>
         <div calss="button"></div>
         <div class="container">
             <div class="cont">
                 <div class="footer_center">
-                    <h3>Copyright By Patrick</h3>
+                    <h3>Copyright By <a href="https://patrick.zsti.me/">Patrick</a></h3>
                 </div>
             </div>
         </div>
     </footer>
-    <script src="main.js"></script>
+    <script src="cos.js"></script>
 </body>
 
 </html>

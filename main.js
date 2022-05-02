@@ -1,9 +1,3 @@
-function getRandomNumber(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -34,6 +28,12 @@ function checkCookie() {
     }
 }
 
+function getRandomNumber(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 function checkOutput() {
     if (FormOutput.value == outputResult) {
         setCookie("score", ++cookie, 365)
@@ -42,43 +42,46 @@ function checkOutput() {
     }
 }
 
-let number = 5
 
-function countdown() {
-    const timeScreen = document.getElementById("timeScreen")
-    if (number < 0) {
-        checkOutput()
-        document.location.reload(false)
-    } else {
-        FormOutput.focus()
-        timeScreen.innerHTML = "czas: " + number
-        number = number - 1
-    }
-    setTimeout("countdown()", 1000)
+let colors = ["#54d3de", "#C6FF67", "#FF876B", "#A486FF", "#cf4684", "#E4AEC5", "#2ac783"]
+let elements = document.querySelectorAll("section")
+let shape = document.querySelectorAll("path")
+let color1 = colors[getRandomNumber(0, 6)]
+let color2 = colors[getRandomNumber(0, 6)]
+let color3 = colors[getRandomNumber(0, 6)]
+while (color2 == color1 || color2 == color3) {
+    color2 = colors[getRandomNumber(0, 6)]
+}
+while (color3 == color1 || color3 == color2) {
+    color3 = colors[getRandomNumber(0, 6)]
 }
 
+elements[0].style.backgroundColor = color1
+shape[0].style.fill = color2
+elements[1].style.backgroundColor = color2
+shape[1].style.fill = color3
+elements[2].style.backgroundColor = color3
 
-let colors = ["#B4FF9F", "#417D7A", "#F55353", "#00AFC1", "#FFD93D", "E4AEC5", "C3E5AE"]
-let body = document.querySelector("body")
-body.style.backgroundColor = colors[getRandomNumber(0, 3)]
 
 checkCookie()
 let cookie = getCookie("score")
-
 const operation = document.getElementById("operation")
 const FormOutput = document.getElementById("FormOutput")
 FormOutput.value = ""
+FormOutput.focus()
 const scoreScreen = document.getElementById("scoreScreen")
 
-
-
 let arr = ["/", "*", "-", "+"]
-let firstNumber = getRandomNumber(1, 4)
-let secondNumber = getRandomNumber(1, 4)
+let firstNumber = getRandomNumber(1, 10)
+let secondNumber = getRandomNumber(1, 10)
 let character = arr[getRandomNumber(0, 3)]
-let outputOperation = firstNumber + " " + character + " " + secondNumber
+
 switch (character) {
     case ("/"):
+        while (firstNumber % secondNumber != 0) {
+            firstNumber = getRandomNumber(1, 10)
+            secondNumber = getRandomNumber(1, 10)
+        }
         outputResult = firstNumber / secondNumber
         break;
 
@@ -95,10 +98,7 @@ switch (character) {
         break;
 }
 
-
+let outputOperation = firstNumber + " " + character + " " + secondNumber
 operation.innerHTML = outputOperation + " ="
 console.log(outputOperation + " = " + outputResult)
 scoreScreen.innerHTML = "wynik: " + cookie
-
-
-countdown()
