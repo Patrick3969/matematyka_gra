@@ -43,7 +43,7 @@ function checkOutput() {
 }
 
 
-let colors = ["#54d3de", "#C6FF67", "#FF876B", "#A486FF", "#cf4684", "#E4AEC5", "#2ac783"]
+let colors = ["#54d3de", "#C6FF67", "#FF876B", "#A486FF", "#e6607f", "#E4AEC5", "#2ac783"]
 let elements = document.querySelectorAll("section")
 let shape = document.querySelectorAll("path")
 let color1 = colors[getRandomNumber(0, 6)]
